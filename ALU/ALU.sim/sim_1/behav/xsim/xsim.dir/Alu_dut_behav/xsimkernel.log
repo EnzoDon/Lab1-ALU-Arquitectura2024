@@ -1,0 +1,4 @@
+Running: xsim.dir/Alu_dut_behav/xsimk -simmode gui -wdb Alu_dut_behav.wdb -simrunnum 0 -socket 56993
+Design successfully loaded
+Design Loading Memory Usage: 20240 KB (Peak: 20700 KB)
+Design Loading CPU Usage: 50 ms
