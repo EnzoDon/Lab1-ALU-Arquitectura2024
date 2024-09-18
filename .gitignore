@@ -10,8 +10,6 @@
 *.bin
 *.pb
 *.lso
-*.xpr
-*.xpr.lock
 
 # Directorios de trabajo y archivos de compilación
 *.runs/
