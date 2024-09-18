@@ -25,7 +25,6 @@
 *.xsim/
 *.vcd
 *.vpd
-*.xpr
 
 # Archivos temporales del sistema operativo
 *.tmp
