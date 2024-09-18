@@ -19,8 +19,18 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+`define I_DATA_LEN 4
+`define I_OP_LEN 6
 
 module TOP(
-
+    input wire button_1,
+    input wire button_2,
+    input wire buton_3,
+    input wire clock 
     );
+    
+    
+    
+    
+    
 endmodule
