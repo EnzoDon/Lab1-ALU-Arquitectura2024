@@ -23,13 +23,13 @@
 module ALU
 #(
     parameter NB_OP = 6,
-    parameter NB_DATA = 4
+    parameter NB_DATA = 8
 )
 (
-    input signed [NB_DATA-1:0] i_data_a,
-	input signed [NB_DATA-1:0] i_data_b,
-	input signed [NB_OP-1:0] i_op,
-	output signed [NB_DATA-1:0] o_data
+    input wire signed [NB_DATA-1:0] i_data_a,
+	input wire signed [NB_DATA-1:0] i_data_b,
+	input wire[NB_OP-1:0] i_op,
+	output wire signed [NB_DATA-1:0] o_data
 );
 
     reg [NB_DATA-1:0] temp;
