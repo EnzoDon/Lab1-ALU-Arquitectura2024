@@ -24,15 +24,15 @@ module Test_Bench_ALU();
 
 // Parámetros
     parameter NB_OP = 6;
-    parameter NB_DATA = 4;
+    parameter NB_DATA = 8;
 
-    // Entradas (simuladas)
-    reg  [NB_DATA-1:0] i_data_a;
-    reg  [NB_DATA-1:0] i_data_b;
+    // Entradas (simuladas) 
+    reg signed [NB_DATA-1:0] i_data_a;
+    reg signed [NB_DATA-1:0] i_data_b;
     reg  [NB_OP-1:0] i_op;
 
     // Salida
-    wire  [NB_DATA-1:0] o_data;
+    wire signed [NB_DATA-1:0] o_data;
 
     // Instanciamos el módulo ALU
     ALU #(.NB_OP(NB_OP), .NB_DATA(NB_DATA)) uut (
@@ -46,11 +46,15 @@ module Test_Bench_ALU();
     initial begin
         // Iniciamos la simulación
         $display("Iniciando Testbench de ALU...");
-        
-        // Test 1: Suma (operación por defecto)
-        i_data_a = 4'b0010; // 2 en decimal
-        i_data_b = 4'b0001; // 1 en decimal
-        i_op = 6'b000000;   // Suma (operación por defecto)
+        for(integer i = 0;i < 8; i = i + 1 )
+        begin
+        // Test 1: Suma 
+        i_data_a = {NB_DATA{1'b0}}; 
+        i_data_b = {NB_DATA{1'b0}}; 
+        i_data_a = $random % 6; // Números entre 0 y 5
+        i_data_b = $random % 6; // Números entre 0 y 5
+
+        i_op = 6'b100000;   // Suma 
         #10;
         $display("Suma: %d + %d = %d", i_data_a, i_data_b, o_data);
 
@@ -77,12 +81,12 @@ module Test_Bench_ALU();
         // Test 6: Shift aritmético a la derecha
         i_op = 6'b000011;   // Operación shift aritmético a la derecha
         #10;
-        $display("Shift Aritmético Derecha: %d >>> %d = %d", i_data_a, i_data_b, o_data);
+        $display("Shift Aritmético Derecha: %b >>> %d = %b", i_data_a, i_data_b, o_data);
 
         // Test 7: Shift lógico a la derecha
         i_op = 6'b000010;   // Operación shift lógico a la derecha
         #10;
-        $display("Shift Lógico Derecha: %d >> %d = %d", i_data_a, i_data_b, o_data);
+        $display("Shift Lógico Derecha: %b >> %d = %b", i_data_a, i_data_b, o_data);
 
         // Test 8: NOR lógico
         i_op = 6'b100111;   // Operación NOR
@@ -91,6 +95,6 @@ module Test_Bench_ALU();
 
         
     end
-
+end
 
 endmodule
