@@ -38,8 +38,8 @@ module TOP
 );
   
   
-  reg signed [DATA_LEN - 1 : 0] reg_data_A;
-  reg signed [DATA_LEN - 1 : 0] reg_data_B;
+  reg [DATA_LEN - 1 : 0] reg_data_A;
+  reg [DATA_LEN - 1 : 0] reg_data_B;
   reg [OP_LEN - 1 : 0] reg_op;
   
   ALU #(
@@ -55,31 +55,21 @@ module TOP
   
   always @(posedge clock)
   begin
-    if(reset && !button_1 && !button_2 && !button_3)
+    if(reset)
         begin
             reg_data_A <= {(DATA_LEN) {1'b0}};
             reg_data_B <= {(DATA_LEN) {1'b0}};
-            reg_op <= {(DATA_LEN) {1'b0}};
+            reg_op <= {(OP_LEN) {1'b0}};
         end
-     else if(!reset && button_1 && !button_2 && !button_3)
-        reg_data_A <= bus;
-     else if(!reset && !button_1 && button_2 && !button_3)
-        reg_data_B <= bus;
-     else if(!reset && !button_1 && !button_2 && button_3)
-        reg_op <= bus;
-     else
-        begin
-            reg_data_A <= reg_data_A;
-            reg_data_B <= reg_data_B;
-            reg_op <= reg_op;
-        end 
+     else if(button_1)
+        reg_data_A <= bus[DATA_LEN-1:0];
+     else if(button_2)
+        reg_data_B <= bus[DATA_LEN-1:0];
+     else if(button_3)
+        reg_op <= bus[OP_LEN-1:0];
+  
   end
-  
-  
-  assign test_led = reset;   
-  
-    
-    
-    
-    
+   
+  assign test_led = reset;    
+
 endmodule
