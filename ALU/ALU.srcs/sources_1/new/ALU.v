@@ -42,8 +42,8 @@ module ALU
             6'b100100 : temp = i_data_a & i_data_b;
             6'b100101 : temp = i_data_a | i_data_b;
             6'b100110 : temp = i_data_a ^ i_data_b;
-            6'b000011 : temp = i_data_a >>> i_data_b;
-            6'b000010 : temp = i_data_a >> i_data_b;
+            6'b000011 : temp = (i_data_a >>> i_data_b);
+            6'b000010 : temp = (i_data_a >> i_data_b);
             6'b100111 : temp = ~(i_data_a|i_data_b);
             default : temp = {NB_DATA{1'b0}};
         endcase
